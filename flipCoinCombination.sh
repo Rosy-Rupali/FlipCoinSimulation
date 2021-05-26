@@ -1,10 +1,9 @@
 #!/bin/bash 
 
 echo "This problem displays winning percentage of Head and Tail combination in a Singlet, Doublet and Triplet"
+read -p "Number of times user want to flip the coin : " flip
 
-read -p "number of times user want to flip the coin" flip
-
-countHHH=0
+ountHHH=0
 countTTT=0
 countTHT=0
 countHTH=0
@@ -12,37 +11,34 @@ countHHT=0
 countTTH=0
 countTHH=0
 countHTT=0
-
 declare -A noOfCounts
-
-for((i=0; i<$flip; i++))
+for((i=0;i<flip;i++))
 do
-	if [ $((RANDOM%8)) -eq 0 ]
-	then
-		((countHHH++))
-	elif [ $((RANDOM%8)) -eq 1 ]
-	then
-		((countTTT++))
-	elif [ $((RANDOM%8)) -eq 2 ]
-	then
-		((countTHT++))
-	elif [ $((RANDOM%8)) -eq 3 ]
-	then
-		((countHHT++))
-	elif [ $((RANDOM%8)) -eq 4 ]
-	then
-		((countTHH++))
-	elif [ $((RANDOM%8)) -eq 5 ]
-	then
-		((countHTT++))
-	elif [ $((RANDOM%8)) -eq 6 ]
-	then
-		((countHTH++))
-	else
-		((countTTH++))
-	fi
+if [ $((RANDOM%8)) -eq 0 ]
+then
+((countHHH++))
+elif [ $((RANDOM%8)) -eq 1 ]
+then
+((countTTT++))
+elif [ $((RANDOM%8)) -eq 2 ]
+then
+((countTHT++))
+elif [ $((RANDOM%8)) -eq 3 ]
+then
+((counHHT++))
+elif [ $((RANDOM%8)) -eq 4 ]
+then
+((countTHH++))
+elif [ $((RANDOM%8)) -eq 5 ]
+then
+((countHTT++))
+elif [ $((RANDOM%8)) -eq 6 ]
+then 
+((countHTH++))
+else
+((countTTH++))
+fi
 done
-
 echo "HHH="$countHHH
 echo "TTT="$countTTT
 echo "THT="$countTHT
@@ -80,10 +76,11 @@ echo "Percentage of HTT= "$PercentageOfHTT
 PercentageOfTTH=$((100*$countTTH/$flip))
 echo "Percentage of TTH= "$PercentageOfTTH
 
-function wining() {
+function wining(){
+
 array=($(for size in ${noOfCounts[@]}
 do
-	echo $size
+echo $size
 done | sort ))
 echo "sorted value"
 echo ${array[@]}
@@ -94,7 +91,7 @@ for i in ${!noOfCounts[@]}
 do
 	if [ ${noOfCounts[$i]} -eq $MaxWin ]
 	then
-		echo "Maximum times win= "$i
+		echo "maximum times win= "$i
 	fi
 done
 }
